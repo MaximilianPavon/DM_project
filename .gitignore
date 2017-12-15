@@ -5,3 +5,4 @@
 *.gz
 *.txt
 /data/
+.ipynb_checkpoints/
