@@ -1,0 +1,7 @@
+.DS_Store
+*.pdf
+*.jpg
+*.png
+*.gz
+*.txt
+/data/
