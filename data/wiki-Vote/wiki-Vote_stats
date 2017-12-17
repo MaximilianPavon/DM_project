@@ -1,0 +1,12 @@
+Dataset statistics
+Nodes,7115
+Edges,103689
+Nodes in largest WCC,7066 (0.993)
+Edges in largest WCC,103663 (1.000)
+Nodes in largest SCC,1300 (0.183)
+Edges in largest SCC,39456 (0.381)
+Average clustering coefficient,0.1409
+Number of triangles,608389
+Fraction of closed triangles,0.04564
+Diameter (longest shortest path),7
+90-percentile effective diameter,3.8
