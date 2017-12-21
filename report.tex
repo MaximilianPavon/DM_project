@@ -1,0 +1,95 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[english]{babel} 			%% englische Sprache
+
+\usepackage[latin1,applemac]{inputenc}	%% deutsche Umlaute wie normale
+ 								%% Buchstaben verwenden 
+ 								%% (ansonsten muesste ‰ durch a getippt werden)
+\usepackage{a4wide} 				%% kleinere Seitenränder
+
+\usepackage{amssymb,amsthm,amsfonts, amsmath}
+								%% diverse Matheerweiterungen, z.B. \implies
+ 								%% diverse Matheerweiterungen, z.B. \mathbb{R}
+%\usepackage{stmaryrd} 				%% weitere Symbole
+\usepackage{epsfig} 					%% um eps-Dateien einzubinden (\epsfig{file=...})
+\usepackage{longtable} 				%% fuer Tabellen ueber mehrere Seiten
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{dsfont}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{float}
+
+\hypersetup{						%get rid of red box around hyperlink
+pdfborder = {0 0 0}
+}
+
+\usepackage{listings} 				% noice code inclusion
+\usepackage{color}
+
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\lstset{
+	frame=single,
+	language=Python,
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=tb,
+	showstringspaces=false,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\color{deepblue},
+	emphstyle=\color{deepred},    		% Custom highlighting style
+	stringstyle=\color{deepgreen},
+	commentstyle=\itshape\color{deepgreen}
+}
+
+
+\title{\textbf{ Programming project} \\
+Data Analysis Project for \\ \textit{CS-E4600 - Algorithmic Methods of Data Mining}}
+\author{Héctor Laria Mantecón and Maximilian Proll}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+%\begin{abstract}
+%
+%\end{abstract}
+
+\section{Exact computation}
+
+
+\begin{table}
+\centering
+\begin{tabular}{c|c|c|c|c} \hline
+directed \textbf{LSCC}	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
+\textbf{\# of nodes} 		&1.300 			&					&				&	\\
+\textbf{\# of edges} 		&39.456 			&					&				&	\\
+\textbf{median} 			&3	 			&					&				&	\\
+\textbf{mean} 			&2.877 			&					&				&	\\
+\textbf{diameter} 		&9	 			&					&				&	\\
+\textbf{effective diameter} 	&4	 			&					&				&	\\
+\textbf{running time} 		&28s	 			&					&				&	\\ \hline
+undirected \textbf{LWCC}	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
+\textbf{\# of nodes} 		&7.066 			&					&				&	\\
+\textbf{\# of edges} 		&103.663			&					&				&	\\
+\textbf{median} 			&3	 			&					&				&	\\
+\textbf{mean} 			&3.247 			&					&				&	\\
+\textbf{diameter} 		&7	 			&					&				&	\\
+\textbf{effective diameter} 	&4	 			&					&				&	\\
+\textbf{running time} 		&	 			&					&				&	\\
+
+\end{tabular}
+\caption{Statistics for both directed and undirected version of the networks as well as running time}
+\label{tab:accuracystandard}
+\end{table}
+
+
+
+\section{approximate computation}
+
+
+
+\end{document}
