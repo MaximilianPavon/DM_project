@@ -2,7 +2,7 @@ import analysis_nx
 import time
 start = time.time()
 
-path_to_file = './data/ego-Gplus/ego-Gplus_combined.txt'
+path_to_file = './data/ego-Gplus/Gplus_combined.txt'
 g = analysis_nx.load_graph(path_to_file, True)
 print('load graph: \t', int(divmod(time.time() - start, 60)[0]), 'min:', int(divmod(time.time() - start, 60)[1]),'s')
 
