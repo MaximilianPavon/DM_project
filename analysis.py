@@ -29,7 +29,9 @@ def calculate_largest_weakly_connected_comp(g):
     return GraphView(g, vfilt=w, directed=False)
 
 def calculate_distances(g, acc_param=0):
+    print('start calculate distances')
     g_distances = topology.shortest_distance(g)
+    print('calculate distances done')
     dist = []
     counter = 0
 
@@ -47,12 +49,14 @@ def calculate_distances(g, acc_param=0):
         else:
             all_pairs = itertools.combinations(g.vertices(), 2)
             num_pairs = nCr(g.num_vertices(), 2)
+    
+    print('select pairs of permutations/combinations done')
 
     for (v1, v2) in all_pairs:
         dist.append(g_distances[v1][v2])
 
-        if (counter % 2000000 == 0):
-            print(counter / num_pairs * 100, '%')
+        if (counter % int(num_pairs / 20) == 0):
+            print(round(counter / num_pairs * 100,1), '%')
         counter = counter + 1
 
     return dist
