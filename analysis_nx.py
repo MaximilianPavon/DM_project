@@ -4,6 +4,8 @@ import networkx as nx
 import multiprocessing as mp
 from functools import partial
 
+import random
+
 def load_graph(filename, directed=True):
     if directed:
         g = nx.read_edgelist(filename, comments='#', delimiter='\t', nodetype=int, create_using=nx.DiGraph())
@@ -39,3 +41,9 @@ def compute_shortest_path_distances_parallel_mp(graph):
 
 def compute_stats(dist):
     return np.percentile(dist, 50), np.mean(dist), np.max(dist), np.percentile(dist, 90)
+
+def n_random_permutations(iterable, n, r=2):
+    r_pairs = []
+    for i in range(n):
+        r_pairs.append(tuple(random.sample(tuple(iterable), r)))
+    return r_pairs
