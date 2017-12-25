@@ -5,3 +5,7 @@
 __pycache__
 *.pdf
 /data/ego-Gplus/
+.idea/
+report.aux
+report.log
+report.out
