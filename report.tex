@@ -62,8 +62,9 @@ pdfborder = {0 0 0}
 
 \begin{table}
 \centering
-\begin{tabular}{c|c|c|c|c} \hline
-directed \textbf{LSCC}	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
+\begin{tabular}{c|c|c|c|c} 
+	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
+directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
 \textbf{\# of nodes} 		&1.300 			&32.223				&N/A				&N/A	\\
 \textbf{\# of edges} 		&39.456 			&443.506				&N/A				&N/A	\\
 \textbf{median} 			&3	 			&N/A					&N/A				&N/A	\\
@@ -72,24 +73,51 @@ directed \textbf{LSCC}	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{e
 \textbf{effective diameter} 	&4	 			&N/A					&N/A				&N/A	\\
 \textbf{running time nX}	&28s				&N/A					&N/A				&N/A	\\
 \textbf{running time gt}	&8s				&N/A					&N/A				&N/A	\\ \hline
-undirected \textbf{LWCC}	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&N/A	\textbf{soc-Pokec}\\ \hline
+undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 \textbf{\# of nodes} 		&7.066 			&75877				&N/A				&N/A	\\
 \textbf{\# of edges} 		&103.663			&508836				&N/A				&N/A	\\
 \textbf{median} 			&3	 			&N/A					&N/A				&N/A	\\
 \textbf{mean} 			&3.247 			&N/A					&N/A				&N/A	\\
 \textbf{diameter} 		&7	 			&N/A					&N/A				&N/A	\\
 \textbf{effective diameter} 	&4	 			&N/A					&N/A				&N/A	\\
-\textbf{running time nX} 	&9 min: 25 s		&N/A					&N/A				&N/A	\\
-\textbf{running time gt} 	&1 min: 50 s		&N/A					&N/A				&N/A	
+\textbf{running time nX} 	&9min 25s		&N/A					&N/A				&N/A	\\
+\textbf{running time gt} 	&1min 50s		&N/A					&N/A				&N/A	
 \end{tabular}
 \caption{Exact statistics for both directed and undirected version of the networks as well as running time}
-\label{tab:accuracystandard}
+\label{tab:exactstatistics}
 \end{table}
 
 
 
 \section{approximate computation}
 
+\begin{table}
+\centering
+\begin{tabular}{c|c|c|c|c} 
+	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
+accuracy	& 10\% 	&5\% 	& 	&	\\ \hline
+directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
+\textbf{\# of nodes} 		&1.300 			&32.223				&N/A				&N/A	\\
+\textbf{\# of edges} 		&39.456 			&443.506				&N/A				&N/A	\\
+\textbf{median} 			&3	 			&4					&N/A				&N/A	\\
+\textbf{mean} 			&2.869 			&4.387				&N/A				&N/A	\\
+\textbf{diameter} 		&6	 			&9					&N/A				&N/A	\\
+\textbf{effective diameter} 	&4	 			&6					&N/A				&N/A	\\
+\textbf{running time nX}	&N/A				&N/A					&N/A				&N/A	\\
+\textbf{running time gt}	&1s				&1min 20s			&N/A				&N/A	\\ \hline
+undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
+\textbf{\# of nodes} 		&7.066 			&75877				&N/A				&N/A	\\
+\textbf{\# of edges} 		&103.663			&508836				&N/A				&N/A	\\
+\textbf{median} 			&3	 			&4					&N/A				&N/A	\\
+\textbf{mean} 			&3.283 			&4.328				&N/A				&N/A	\\
+\textbf{diameter} 		&6	 			&9					&N/A				&N/A	\\
+\textbf{effective diameter} 	&4	 			&5					&N/A				&N/A	\\
+\textbf{running time nX} 	&N/A				&N/A					&N/A				&N/A	\\
+\textbf{running time gt} 	&5s				&7min 54s			&N/A				&N/A	
+\end{tabular}
+\caption{Approximate statistics for random sampling pairs of vertices for both directed and undirected version of the networks as well as running time}
+\label{tab:approximatestatistics}
+\end{table}
 
 
 \end{document}
