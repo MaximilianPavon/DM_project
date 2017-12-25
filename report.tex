@@ -26,6 +26,8 @@ pdfborder = {0 0 0}
 
 \usepackage{listings} 				% noice code inclusion
 \usepackage{color}
+\usepackage{enumerate}
+
 
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepred}{rgb}{0.6,0,0}
@@ -60,8 +62,9 @@ pdfborder = {0 0 0}
 \section{Exact computation}
 
 
-\begin{table}
+\begin{table}[h!]
 \centering
+\caption{\textbf{Exact statistics} for both directed and undirected version of the networks as well as running time}
 \begin{tabular}{c|c|c|c|c} 
 	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
 directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
@@ -83,16 +86,18 @@ undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 \textbf{running time nX} 	&9min 25s		&N/A					&N/A				&N/A	\\
 \textbf{running time gt} 	&1min 50s		&N/A					&N/A				&N/A	
 \end{tabular}
-\caption{Exact statistics for both directed and undirected version of the networks as well as running time}
 \label{tab:exactstatistics}
 \end{table}
 
 
 
-\section{approximate computation}
+\section{Approximate Computation}
 
-\begin{table}
+\subsection{Computation of approximations for a fixed accuracy parameter for all three approximation techniques}
+
+\begin{table}[h!]
 \centering
+\caption{Approximate statistics for \textbf{random sampling pairs of vertices} for both directed and undirected version of the networks as well as running time}
 \begin{tabular}{c|c|c|c|c} 
 	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
 accuracy	& 10\% 	&5\% 	& 	&	\\ \hline
@@ -115,9 +120,94 @@ undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 \textbf{running time nX} 	&N/A				&N/A					&N/A				&N/A	\\
 \textbf{running time gt} 	&5s				&7min 54s			&N/A				&N/A	
 \end{tabular}
-\caption{Approximate statistics for random sampling pairs of vertices for both directed and undirected version of the networks as well as running time}
-\label{tab:approximatestatistics}
+\label{tab:approximatestatistics_randomsample}
 \end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Approximate statistics for \textbf{breadth-first search on random sources} for both directed and undirected version of the networks as well as running time}
+\begin{tabular}{c|c|c|c|c} 
+	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
+accuracy	&  	& 	& 	&	\\ \hline
+directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
+\textbf{\# of nodes} 		&1.300 			&32.223				&N/A				&N/A	\\
+\textbf{\# of edges} 		&39.456 			&443.506				&N/A				&N/A	\\
+\textbf{median} 			&	 			&					&N/A				&N/A	\\
+\textbf{mean} 			&	 			&					&N/A				&N/A	\\
+\textbf{diameter} 		&	 			&					&N/A				&N/A	\\
+\textbf{effective diameter} 	&	 			&					&N/A				&N/A	\\
+\textbf{running time nX}	&N/A				&N/A					&N/A				&N/A	\\
+\textbf{running time gt}	&				&					&N/A				&N/A	\\ \hline
+undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
+\textbf{\# of nodes} 		&7.066 			&75877				&N/A				&N/A	\\
+\textbf{\# of edges} 		&103.663			&508836				&N/A				&N/A	\\
+\textbf{median} 			&	 			&					&N/A				&N/A	\\
+\textbf{mean} 			&	 			&					&N/A				&N/A	\\
+\textbf{diameter} 		&	 			&					&N/A				&N/A	\\
+\textbf{effective diameter} 	&	 			&					&N/A				&N/A	\\
+\textbf{running time nX} 	&N/A				&N/A					&N/A				&N/A	\\
+\textbf{running time gt} 	&				&					&N/A				&N/A	
+\end{tabular}
+\label{tab:approximatestatistics_BFS}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\caption{Approximate statistics for \textbf{the Flajolet-Martin algorithm} for both directed and undirected version of the networks as well as running time}
+\begin{tabular}{c|c|c|c|c} 
+	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
+accuracy	&  	& 	& 	&	\\ \hline
+directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
+\textbf{\# of nodes} 		&1.300 			&32.223				&N/A				&N/A	\\
+\textbf{\# of edges} 		&39.456 			&443.506				&N/A				&N/A	\\
+\textbf{median} 			&	 			&					&N/A				&N/A	\\
+\textbf{mean} 			&	 			&					&N/A				&N/A	\\
+\textbf{diameter} 		&	 			&					&N/A				&N/A	\\
+\textbf{effective diameter} 	&	 			&					&N/A				&N/A	\\
+\textbf{running time nX}	&N/A				&N/A					&N/A				&N/A	\\
+\textbf{running time gt}	&				&					&N/A				&N/A	\\ \hline
+undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
+\textbf{\# of nodes} 		&7.066 			&75877				&N/A				&N/A	\\
+\textbf{\# of edges} 		&103.663			&508836				&N/A				&N/A	\\
+\textbf{median} 			&	 			&					&N/A				&N/A	\\
+\textbf{mean} 			&	 			&					&N/A				&N/A	\\
+\textbf{diameter} 		&	 			&					&N/A				&N/A	\\
+\textbf{effective diameter} 	&	 			&					&N/A				&N/A	\\
+\textbf{running time nX} 	&N/A				&N/A					&N/A				&N/A	\\
+\textbf{running time gt} 	&				&					&N/A				&N/A	
+\end{tabular}
+\label{tab:approximatestatistics_Flajolet-Martin}
+\end{table}
+
+\newpage 
+asd
+\newpage
+asd
+\newpage
+
+\subsection{Approximation of the network statistics for different values of the accuracy parameter}
+
+\begin{figure}[h!]
+\includegraphics[width=0.9\linewidth]{figures/2_2_wiki-Vote_lscc.png}
+\caption{First approximation of the network statistics by \textbf{sampling random pairs of vertices} to approximate network statistics as a function of the accuracy parameter for the \textbf{LSCC} for the network \textit{wiki-Vote}}
+\label{pic:2_2_wiki-Vote_lscc}
+\end{figure}
+
+\begin{figure}[h!]
+\includegraphics[width=0.9\linewidth]{figures/2_2_wiki-Vote_lwcc.png}
+\caption{First approximation of the network statistics by \textbf{sampling random pairs of vertices} to approximate network statistics as a function of the accuracy parameter for the \textbf{LWCC} for the network \textit{wiki-Vote}}
+\label{pic:2_2_wiki-Vote_lwcc}
+\end{figure}
+
+
+\subsection{Discussion}
+
+\begin{enumerate}[(i)]
+\item How good is the approximation? 
+\item Which of the three approximation methods is better and why?
+\item What is the recommended value of the accuracy parameter, according to your experiments?
+\end{enumerate}
 
 
 \end{document}
