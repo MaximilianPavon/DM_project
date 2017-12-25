@@ -7,7 +7,7 @@ filenames = ['./data/wiki-Vote/wiki-Vote.txt']
 g = analysis.load_graph(filenames[0], directed=True)
 print('load graph: \t', int(divmod(time.time() - start, 60)[0]), 'min:', int(divmod(time.time() - start, 60)[1]),'s')
 
-accuracy = 0.05
+accuracy = 0.10
 
 print('=====LSCC=====')
 start_lscc = time.time()
