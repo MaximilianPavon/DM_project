@@ -1,6 +1,5 @@
 .DS_Store
 *.jpg
-*.png
 *.gz
 .ipynb_checkpoints/
 __pycache__
