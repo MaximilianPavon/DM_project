@@ -4,7 +4,7 @@ start = time.time()
 
 filenames = ['./data/ego-Gplus/gplus_combined.txt']
 
-g = analysis.load_graph(filenames[0], directed=True)
+g = analysis.load_graph(filenames[0], directed=True, delimiter=' ')
 print('load graph: \t', int(divmod(time.time() - start, 60)[0]), 'min:', int(divmod(time.time() - start, 60)[1]),'s')
 
 accuracy = 0.05

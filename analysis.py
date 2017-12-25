@@ -11,11 +11,11 @@ def nCr(n,r):
     f = math.factorial
     return f(n) // f(r) // f(n-r)
 
-def load_graph(filename, directed=True):
+def load_graph(filename, directed=True, delimiter='\t'):
     g = Graph(directed=directed)
 
     with open(filename) as f:
-        reader_network = csv.reader(f, delimiter='\t', skipinitialspace=True)
+        reader_network = csv.reader(f, delimiter=delimiter, skipinitialspace=True)
         g.add_edge_list(map(int, edge) for edge in reader_network)
 
     return g
@@ -49,7 +49,7 @@ def calculate_distances(g, acc_param=0):
         else:
             all_pairs = itertools.combinations(g.vertices(), 2)
             num_pairs = nCr(g.num_vertices(), 2)
-    
+
     print('select pairs of permutations/combinations done')
 
     for (v1, v2) in all_pairs:
