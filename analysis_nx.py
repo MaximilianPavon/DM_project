@@ -1,23 +1,26 @@
 import numpy as np
 import networkx as nx
-# for parallelisation
-import multiprocessing as mp
+import multiprocessing as mp  # for parallelisation
 from functools import partial
-
 import random
 
+
 def load_graph(filename, directed=True):
+    graph_container = None
+
     if directed:
-        g = nx.read_edgelist(filename, comments='#', delimiter='\t', nodetype=int, create_using=nx.DiGraph())
-    else:
-        g = nx.read_edgelist(filename, comments='#', delimiter='\t', nodetype=int)
-    return g
+        graph_container = nx.DiGraph()
+
+    return nx.read_edgelist(filename, comments='#', delimiter='\t', nodetype=int, create_using=graph_container)
+
 
 def calculate_largest_strongly_connected_comp(g):
     return max(nx.strongly_connected_component_subgraphs(g), key=len)
 
+
 def calculate_largest_weakly_connected_comp(g):
-    return  nx.to_undirected(max(nx.weakly_connected_component_subgraphs(g), key=len))
+    return nx.to_undirected(max(nx.weakly_connected_component_subgraphs(g), key=len))
+
 
 def compute_shortest_path_distances_parallel_mp(graph):
     num_cores = mp.cpu_count()
@@ -39,11 +42,15 @@ def compute_shortest_path_distances_parallel_mp(graph):
 
     return distances
 
+
 def compute_stats(dist):
     return np.percentile(dist, 50), np.mean(dist), np.max(dist), np.percentile(dist, 90)
 
+
 def n_random_permutations(iterable, n, r=2):
     r_pairs = []
+
     for i in range(n):
         r_pairs.append(tuple(random.sample(tuple(iterable), r)))
+
     return r_pairs
