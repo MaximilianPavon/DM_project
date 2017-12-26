@@ -15,11 +15,21 @@ def load_graph(filename, directed=True):
 
 
 def calculate_largest_strongly_connected_comp(g):
-    return max(nx.strongly_connected_component_subgraphs(g), key=len)
+    """
+    LSCC
+    :param nx.Graph g: Graph
+    :return: A view of the LSCC graph
+    """
+    return max(nx.strongly_connected_component_subgraphs(g, copy=False), key=len)
 
 
 def calculate_largest_weakly_connected_comp(g):
-    return nx.to_undirected(max(nx.weakly_connected_component_subgraphs(g), key=len))
+    """
+    LWCC
+    :param nx.Graph g: Graph
+    :return: A view of the LWCC graph
+    """
+    return nx.to_undirected(max(nx.weakly_connected_component_subgraphs(g, copy=False), key=len))
 
 
 def compute_shortest_path_distances_parallel_mp(graph):
