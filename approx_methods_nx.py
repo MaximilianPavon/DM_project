@@ -40,16 +40,23 @@ def method_2(g, n_samples):
 
 
 def method_3(g, n_samples):
+    """
+    section 2.2 http://math.cmu.edu/~ctsourak/tkdd10.pdf
+    """
     k = L = g.number_of_nodes()
     bitmaps = np.zeros((k, L), dtype=np.bool)
 
-    for j in range(n_samples):
-        for i in 0:
-            for kk in 0:
-                pass
+    # for j in range(n_samples):
+    for i in 0:
+        for kk in 0:
+            idx = compute_index(kk)
+            bitmaps[i, idx] = True
+
+    R = leftmost_zero(bitmaps[i, :])
+    sweet_sweet_cardinality = 2 ** R / 0.77351
 
 
-def compute_index():
+def compute_index(x):
     pass
 
 
