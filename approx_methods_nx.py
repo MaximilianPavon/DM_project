@@ -39,25 +39,51 @@ def method_2(g, n_samples):
     return g.edge_subgraph(bfs_edges)
 
 
-def method_3(g, n_samples):
+def method_3(g, n_samples=32, max_iter=256):
     """
     section 2.2 http://math.cmu.edu/~ctsourak/tkdd10.pdf
     """
-    k = L = g.number_of_nodes()
-    bitmaps = np.zeros((k, L), dtype=np.bool)
+    K = n_samples
+    max_iter = max_iter # h
+    n = g.number_of_nodes() # i
+    L = 64 # length of the bitstring
+    bitmaps = np.zeros((K, max_iter, n, L), dtype=np.bool)
 
-    # for j in range(n_samples):
-    for i in 0:
-        for kk in 0:
-            idx = compute_index(kk)
-            bitmaps[i, idx] = True
+    h_max = -1
+    N = np.zeros(max_iter)
 
-    R = leftmost_zero(bitmaps[i, :])
-    sweet_sweet_cardinality = 2 ** R / 0.77351
+    for h in range(max_iter):
+        changed = False
+        for i in range(n):
+            for l in range(K):
+                bitmaps[l, h, i] = bitmaps[l, h - 1, i] | 'thefuck'
+
+            if 'something not equal to something':
+                changed = True
+
+        N[h] = _neighborhood_sum(bitmaps, n, K, h)
+        if not changed:
+            h_max = h
+            break # the loop
+
+    eff_diameter = 'smallest strange thing'
+
+    return 0
 
 
-def compute_index(x):
-    pass
+def _neighborhood_sum(b, n, k, h):
+    neigh_sum = 0
+    for ii in range(n):
+        neigh_sum += neighborhood_func(b, k, h, ii)
+
+    return neigh_sum
+
+
+def neighborhood_func(b, k, h, i):
+    s = 0
+    for l in range(k):
+        s += leftmost_zero(b[l, h, i])
+    return 2 ** (s / k) / 0.77351
 
 
 def leftmost_zero(array):
@@ -76,3 +102,5 @@ if __name__ == "__main__":
 
     n_samples = int(0.01 * lscc.number_of_nodes())
     bfs_graph = method_2(lscc, n_samples)
+
+    #method_3(g, 32)
