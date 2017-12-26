@@ -1,6 +1,7 @@
 import analysis_nx
 import networkx as nx
 import random
+import numpy as np
 
 
 def cache_graph():
@@ -36,6 +37,26 @@ def method_2(g, n_samples):
         bfs_edges.extend(list(nx.bfs_edges(g, source)))
 
     return g.edge_subgraph(bfs_edges)
+
+
+def method_3(g, n_samples):
+    k = L = g.number_of_nodes()
+    bitmaps = np.zeros((k, L), dtype=np.bool)
+
+    for j in range(n_samples):
+        for i in 0:
+            for kk in 0:
+                pass
+
+
+def compute_index():
+    pass
+
+
+def leftmost_zero(array):
+    nz_is = np.nonzero(array)[0]
+    assert nz_is.size != 0, 'Everything is zero!'
+    return len(array) - nz_is[-1] - 1
 
 
 if __name__ == "__main__":
