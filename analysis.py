@@ -28,10 +28,15 @@ def calculate_largest_weakly_connected_comp(g):
     w = topology.label_largest_component(g, directed=False)
     return GraphView(g, vfilt=w, directed=False)
 
-def calculate_distances(g, acc_param=0):
-    print('start calculate distances')
-    g_distances = topology.shortest_distance(g)
-    print('calculate distances done')
+def calculate_distances(g, acc_param=0, g_distances=None):
+    if g_distances=None:
+        print('start calculate distances')
+        g_distances = topology.shortest_distance(g)
+        print('calculate distances done')
+    else:
+        print('use provided distances topology')
+        g_distances = g_distances
+
     dist = []
     counter = 0
 
