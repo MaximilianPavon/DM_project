@@ -74,11 +74,11 @@ plt.plot(acc_ar, s_eff_diam_ar, label='Effective Diameter', color='g')
 plt.axhline(s_ex_eff_dia, linestyle='dashed', color='g')
 
 plt.legend()
-title = 'approximation method: sample random pairs of vertices \n approximate network statistics as a function of the accuracy parameter for  the LSCC \n for the network: ' + filenames[0].split('.')[0]
+title = 'approximation method: sample random pairs of vertices \n approximate network statistics as a function of the accuracy parameter for  the LSCC \n for the network: ' + filenames[0].split('/')[2]
 plt.title(title)
 plt.xlabel('accuracy[%]')
 plt.ylabel('distance')
-plt.savefig('./figures/2_2_' + filenames[0].split('.')[0] + '_lscc', dpi=300, bordes='tight')
+plt.savefig('./figures/2_2_' + filenames[0].split('/')[2] + '_lscc', dpi=300, bordes='tight')
 
 plt.figure(figsize=(12,6))
 plt.plot(acc_ar, w_median_ar, label='Median distance', color='navy')
@@ -93,10 +93,10 @@ plt.axhline(w_ex_dia, linestyle='dashed', color='orange')
 plt.plot(acc_ar, w_eff_diam_ar, label='Effective Diameter', color='g')
 plt.axhline(w_ex_eff_dia, linestyle='dashed', color='g')
 plt.legend()
-title = 'approximation method: sample random pairs of vertices \n approximate network statistics as a function of the accuracy parameter for  the LWCC \n for the network: ' + filenames[0].split('.')[0]
+title = 'approximation method: sample random pairs of vertices \n approximate network statistics as a function of the accuracy parameter for  the LWCC \n for the network: ' + filenames[0].split('/')[2]
 plt.title(title)
 plt.xlabel('accuracy[%]')
 plt.ylabel('distance')
-plt.savefig('./figures/2_2_' + filenames[0].split('.')[0] + '_lwcc', dpi=300, bordes='tight')
+plt.savefig('./figures/2_2_' + filenames[0].split('/')[2] + '_lwcc', dpi=300, bordes='tight')
 
 print('complete code: \t', int(divmod(time.time() - start, 60)[0]), 'min:', int(divmod(time.time() - start, 60)[1]),'s')
