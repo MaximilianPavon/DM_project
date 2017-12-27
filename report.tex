@@ -46,6 +46,10 @@ pdfborder = {0 0 0}
 	commentstyle=\itshape\color{deepgreen}
 }
 
+\usepackage{hyperref}
+\newcommand{\gt}[0]{{\bf gt }}
+\newcommand{\nx}[0]{{\bf nX }}
+
 
 \title{\textbf{ Programming project} \\ \textit{CS-E4600 - Algorithmic Methods of Data Mining}}
 \author{HŽctor Laria Mantec—n and Maximilian Proll}
@@ -61,6 +65,9 @@ pdfborder = {0 0 0}
 
 \section{Exact computation}
 
+In order to calculate exact statistics we used two different libraries. The first library is \textit{\href{https://networkx.github.io/documentation/stable/index.html}{NetworkX}} (\nx) in version 2.0 and the second library is \textit{\href{https://graph-tool.skewed.de}{graph-tool}} (\gt)  in version 2.26. 
+
+The result of the exact computations are summarised in Table~\ref{tab:exactstatistics}.
 
 \begin{table}[h!]
 \centering
@@ -89,11 +96,64 @@ undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 \label{tab:exactstatistics}
 \end{table}
 
+We calculated the exact statistics for the first network (\textit{wiki-Vote}) using both libraries and realised that the library \gt is significantly (up to a factor of  5x) faster than \nx, which is why for further analysis we focused on \gt. This comparison has been done with the already parallelised code for \nx, which can be seen in the file \textit{analysis\_nx.py} in the function \textit{compute\_shortest\_path\_distances\_parallel\_mp}, which is displayed	below:
 
+\begin{lstlisting}
+
+def compute_shortest_path_distances_parallel_mp(graph):
+    num_cores = mp.cpu_count()
+    print(num_cores, 'cores used')
+
+    pool = mp.Pool(processes=num_cores)
+
+    parallel_function = partial(nx.single_source_shortest_path_length, graph)
+    sources = [source for source in graph]
+    shortest_paths = pool.map(parallel_function, sources)
+
+    pool.close()
+    pool.join()
+
+    distances = []
+    for _dict in shortest_paths:
+        for key, value in _dict.items():
+            distances.append(value)
+
+    return distances
+
+\end{lstlisting}
+
+But even though the code for \nx has been parallelised, it could not keep up with the core algorithms and data structures of \gt, which are written in C++.
+
+The computations for \textit{wiki-Vote} where done locally on our laptops whereas the computation for the bigger networks where performed on brute/force, because of the increased memory. The technical specifications are summarised in Table~\ref{tab:specs}.
+
+\begin{table}[h!]
+\centering
+\caption{Technical specifications of the machines used to run the code}\begin{tabular}{c|c|c}
+	& Laptop 								& brute/force \\ \hline
+CPU	& dual-core Intel i5 Kaby Lake 3.1 GHz		& 2 x Intel Xeon E5-2670 (2 x 8 Cores)\\ 
+RAM	& 16 GB								& 265 GB \\ 
+%	&									& ¥ \\ 
+\end{tabular}
+\label{tab:specs}\end{table}
+
+The larger networks (\textit{ego-Gplus} and \textit{soc-Pokec}) did not finish in a reasonable time.
+
+The relevant files for the exact computations are:
+
+\begin{itemize}
+\setlength\itemsep{0pt}
+\item \textit{nx\_brute\_wiki.py}
+\item \textit{gt\_brute\_exact\_wiki.py}
+\item \textit{gt\_brute\_exact\_soc-Epinions1.py}
+\item \textit{analysis.py}
+\item \textit{analysis\_nx.py}
+\end{itemize}
 
 \section{Approximate Computation}
 
 \subsection{Computation of approximations for a fixed accuracy parameter for all three approximation techniques}
+
+In the first approximation method the accuracy parameter corresponds to the percentage of the number of vertices of the graph which is the number of random sampled pairs of vertices.
 
 \begin{table}[h!]
 \centering
@@ -122,6 +182,8 @@ undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 \end{tabular}
 \label{tab:approximatestatistics_randomsample}
 \end{table}
+
+In Table~\ref{tab:approximatestatistics_randomsample} for random sampling pairs of vertices we can see, that this approximation method provides a drastically shorter running time which on the other hand comes hand in hand with less accurate network statistics. Only the diameter is considerably inaccurate, which makes sense, as the maximum shortest distance will most likely only be achieved by a few combinations of origin and source. The other network statistics are surprisingly close to the exact value.
 
 \begin{table}[h!]
 \centering
@@ -187,18 +249,21 @@ asd
 
 \subsection{Approximation of the network statistics for different values of the accuracy parameter}
 
+The largest network for which we computed exact network statistics was \textit{soc-Epinions1}. The following figures show the approximate network statistics as a function of the accuracy parameter.
+
 \begin{figure}[h!]
-\includegraphics[width=0.9\linewidth]{figures/2_2_wiki-Vote_lscc.png}
-\caption{First approximation of the network statistics by \textbf{sampling random pairs of vertices} to approximate network statistics as a function of the accuracy parameter for the \textbf{LSCC} for the network \textit{wiki-Vote}}
-\label{pic:2_2_wiki-Vote_lscc}
+\includegraphics[width=0.9\linewidth]{figures/2_2_soc-Epinions1_lscc.png}
+\caption{First approximation of the network statistics by \textbf{sampling random pairs of vertices} to approximate network statistics as a function of the accuracy parameter for the \textbf{LSCC} for the network \textit{soc-Epinions1}. The dashed line corresponds to the exact value of the network statistics in the same color.}
+\label{pic:2_2_soc-Epinions1_lscc}
 \end{figure}
 
 \begin{figure}[h!]
-\includegraphics[width=0.9\linewidth]{figures/2_2_wiki-Vote_lwcc.png}
-\caption{First approximation of the network statistics by \textbf{sampling random pairs of vertices} to approximate network statistics as a function of the accuracy parameter for the \textbf{LWCC} for the network \textit{wiki-Vote}}
-\label{pic:2_2_wiki-Vote_lwcc}
+\includegraphics[width=0.9\linewidth]{figures/2_2_soc-Epinions1_lwcc.png}
+\caption{First approximation of the network statistics by \textbf{sampling random pairs of vertices} to approximate network statistics as a function of the accuracy parameter for the \textbf{LWCC} for the network \textit{soc-Epinions1}.The dashed line corresponds to the exact value of the network statistics in the same color.}
+\label{pic:2_2_soc-Epinions1_lwcc}
 \end{figure}
 
+The Figures~\ref{pic:2_2_soc-Epinions1_lscc} and \ref{pic:2_2_soc-Epinions1_lwcc} show, that for sampling random pairs of vertices all approximate network statistics apart from the diameter converge already for very small accuracies to the exact value. Therefore a relatively small fraction of the number of vertices can be selected as the number of random sampled pairs and quite accurate approximations for all network statistics but the diameter can be achieved.
 
 \subsection{Discussion}
 
@@ -207,6 +272,5 @@ asd
 \item Which of the three approximation methods is better and why?
 \item What is the recommended value of the accuracy parameter, according to your experiments?
 \end{enumerate}
-
 
 \end{document}
