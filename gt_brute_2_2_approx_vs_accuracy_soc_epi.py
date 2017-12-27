@@ -26,7 +26,6 @@ print('caluclate distances LWCC: ', int(divmod(time.time() - start, 60)[0]), 'mi
 acc_ar = [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.45, 0.5, 0.6]
 s_median_ar, s_mean_ar, s_diam_ar, s_eff_diam_ar = [], [], [], []
 w_median_ar, w_mean_ar, w_diam_ar, w_eff_diam_ar = [], [], [], []
-i = 1
 
 for accuracy in acc_ar:
 
@@ -53,7 +52,7 @@ for accuracy in acc_ar:
     w_diam_ar.append(w_diam)
     w_eff_diam_ar.append(w_eff_diam)
 
-    print('accuracy iteration ',i ,':', int(divmod(time.time() - start_acc, 60)[0]), 'min:', int(divmod(time.time() - start_acc, 60)[1]),'s')
+    print('accuracy iteration :', int(divmod(time.time() - start_acc, 60)[0]), 'min:', int(divmod(time.time() - start_acc, 60)[1]),'s')
 
 # enter exact values for soc-Epinions1:
 s_ex_median, s_ex_mean, s_ex_dia, s_ex_eff_dia = 4, 4.405, 16, 6
