@@ -6,7 +6,8 @@ filenames = ['./data/ego-Gplus/gplus_combined.txt']
 
 g = analysis.load_graph(filenames[0], directed=True, delimiter=' ')
 print('load graph: \t', int(divmod(time.time() - start, 60)[0]), 'min:', int(divmod(time.time() - start, 60)[1]),'s')
-
+print('g edges: \t', g.num_edges())
+print('g nodes: \t', g.num_vertices())
 accuracy = 0.05
 
 print('=====LSCC=====')
