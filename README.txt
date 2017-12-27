@@ -5,8 +5,8 @@ authors: Héctor Laria Mantecón and Maximilian Proll
 nomenclatura for files:
 
 prefix:
-gt_* 			- file written with library graph-tool
-nx_*			- file written with library networkX
+gt_* 			- file written using library graph-tool
+nx_*			- file written using library networkX
 
 middlefix:
 *_exact_stats_*		- compute exact statistics
@@ -18,3 +18,5 @@ suffix indicates which network has been used
 file ending:
 *.py			- python file
 *.ipynb			- jupyter notebook
+
+analysis.py and analysis_nx.py define functions in graph-tool and networkX respectively
