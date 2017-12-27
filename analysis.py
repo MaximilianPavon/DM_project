@@ -29,11 +29,7 @@ def calculate_largest_weakly_connected_comp(g):
     return GraphView(g, vfilt=w, directed=False)
 
 def calculate_distances(g, acc_param=0, g_distances=None):
-<<<<<<< HEAD
     if g_distances == None:
-=======
-    if g_distances=None:
->>>>>>> 208711e286874d693e7902c20a04a7fa91767fca
         print('start calculate distances')
         g_distances = topology.shortest_distance(g)
         print('calculate distances done')
