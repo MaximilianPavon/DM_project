@@ -23,8 +23,7 @@ print('caluclate distances LSCC: ', int(divmod(time.time() - start, 60)[0]), 'mi
 lwcc_distances = topology.shortest_distance(lwcc)
 print('caluclate distances LWCC: ', int(divmod(time.time() - start, 60)[0]), 'min:', int(divmod(time.time() - start, 60)[1]),'s')
 
-#acc_ar = [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6, 0.7]
-acc_ar = [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.15, 0.2, 0.25, 0.3]
+acc_ar = [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.45, 0.5, 0.6]
 s_median_ar, s_mean_ar, s_diam_ar, s_eff_diam_ar = [], [], [], []
 w_median_ar, w_mean_ar, w_diam_ar, w_eff_diam_ar = [], [], [], []
 i = 1
@@ -76,7 +75,7 @@ plt.axhline(s_ex_eff_dia, linestyle='dashed', color='g')
 plt.legend()
 title = 'approximation method: sample random pairs of vertices \n approximate network statistics as a function of the accuracy parameter for  the LSCC \n for the network: ' + filenames[0].split('/')[2]
 plt.title(title)
-plt.xlabel('accuracy[%]')
+plt.xlabel('accuracy')
 plt.ylabel('distance')
 plt.savefig('./figures/2_2_' + filenames[0].split('/')[2] + '_lscc', dpi=300, bordes='tight')
 
@@ -95,7 +94,7 @@ plt.axhline(w_ex_eff_dia, linestyle='dashed', color='g')
 plt.legend()
 title = 'approximation method: sample random pairs of vertices \n approximate network statistics as a function of the accuracy parameter for  the LWCC \n for the network: ' + filenames[0].split('/')[2]
 plt.title(title)
-plt.xlabel('accuracy[%]')
+plt.xlabel('accuracy')
 plt.ylabel('distance')
 plt.savefig('./figures/2_2_' + filenames[0].split('/')[2] + '_lwcc', dpi=300, bordes='tight')
 
