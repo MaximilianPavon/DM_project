@@ -63,7 +63,7 @@ title = 'approximation method: sample random pairs of vertices \n approximate ne
 plt.title(title)
 plt.xlabel('accuracy[%]')
 plt.ylabel('distance')
-plt.savefig('2_2_' + filenames[0].split('.')[0] + '_lscc', dpi=300, bordes='tight')
+plt.savefig('./figures/2_2_' + filenames[0].split('.')[0] + '_lscc', dpi=300, bordes='tight')
 
 plt.figure(figsize=(12,6))
 plt.plot(acc_ar, w_median_ar, label='Median distance', color='navy')
@@ -82,4 +82,4 @@ title = 'approximation method: sample random pairs of vertices \n approximate ne
 plt.title(title)
 plt.xlabel('accuracy[%]')
 plt.ylabel('distance')
-plt.savefig('2_2_' + filenames[0].split('.')[0] + '_lwcc', dpi=300, bordes='tight')
+plt.savefig('./figures/2_2_' + filenames[0].split('.')[0] + '_lwcc', dpi=300, bordes='tight')
