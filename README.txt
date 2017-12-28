@@ -19,17 +19,17 @@ gt_* 			- file written using library graph-tool
 nx_*			- file written using library networkX
 
 middlefix:
-*_exact_stats_*	- compute exact statistics
-*_approx_*		  - compute approximate statistics with random sampling of pairs of vertices
-*_brute_*		    - indicates that this code has been used to run on brute/force
+*_exact_stats_*		- compute exact statistics
+*_approx_*		- compute approximate statistics with random sampling of pairs of vertices
+*_brute_*		- indicates that this code has been used to run on brute/force
 
 suffix:
 indicates which network has been used
-*_wiki_*   - WikiVote network
-*_soc-Epinions1_* *_soc_epi_* *_epi_*  - Epinions network
+*_wiki_*   				- WikiVote network
+*_soc-Epinions1_* *_soc_epi_* *_epi_*	- Epinions network
 
 file ending:
 *.py			- Python file
-*.ipynb		- Jupyter Notebook
+*.ipynb			- Jupyter Notebook
 
 analysis.py and analysis_nx.py define functions in Graph-Tool and NetworkX respectively
