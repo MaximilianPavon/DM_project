@@ -1,0 +1,20 @@
+# terminal 1:
+##### install conda n shit
+ssh username@force.aalto.fi
+wget http://repo.continuum.io/miniconda/Miniconda3-3.7.0-Linux-x86_64.sh -O ~/miniconda.sh
+bash ~/miniconda.sh -b -p $HOME/miniconda
+export PATH="$HOME/miniconda/bin:$PATH"
+conda install numpy scipy matplotlib jupyterlab networkx
+
+################
+# now to make the connection
+
+# terminal 1:
+./miniconda/bin/jupyter lab --no-browser --port=8889
+
+# terminal 2:
+ssh -N -L localhost:8888:localhost:8889 username@force.aalto.fi
+# it shouldn't say anything at all
+# now in the browser go to localhost:8889 and paste the token from terminal 1 (?token=blahblah)
+
+# when finished, you can close both by pressing CTRL-C

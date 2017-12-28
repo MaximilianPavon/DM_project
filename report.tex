@@ -47,8 +47,9 @@ pdfborder = {0 0 0}
 }
 
 \usepackage{hyperref}
-\newcommand{\gt}[0]{{\bf gt }}
-\newcommand{\nx}[0]{{\bf nX }}
+\usepackage{xspace} % to deal with this annoying spaces after new commands
+\newcommand{\gt}[0]{{\bf gt}\xspace}
+\newcommand{\nx}[0]{{\bf nX}\xspace}
 
 
 \title{\textbf{ Programming project} \\ \textit{CS-E4600 - Algorithmic Methods of Data Mining}}
@@ -128,13 +129,15 @@ The computations for \textit{wiki-Vote} where done locally on our laptops wherea
 
 \begin{table}[h!]
 \centering
-\caption{Technical specifications of the machines used to run the code}\begin{tabular}{c|c|c}
+\caption{Technical specifications of the machines used to run the code}
+\begin{tabular}{c|c|c}
 	& Laptop 								& brute/force \\ \hline
 CPU	& dual-core Intel i5 Kaby Lake 3.1 GHz		& 2 x Intel Xeon E5-2670 (2 x 8 Cores)\\ 
 RAM	& 16 GB								& 265 GB \\ 
 %	&									& ¥ \\ 
 \end{tabular}
-\label{tab:specs}\end{table}
+\label{tab:specs}
+\end{table}
 
 The larger networks (\textit{ego-Gplus} and \textit{soc-Pokec}) did not finish in a reasonable time.
 
