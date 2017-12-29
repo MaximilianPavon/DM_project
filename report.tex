@@ -82,7 +82,7 @@ directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
 \textbf{mean} 			&2,877 			&4,405				&N/A				&N/A	\\
 \textbf{diameter} 		&9	 			&16					&N/A				&N/A	\\
 \textbf{effective diameter} 	&4	 			&6					&N/A				&N/A	\\
-\textbf{running time nX}	&28s				&					&N/A				&N/A	\\
+\textbf{running time nX}	&28s				&		N/A			&N/A				&N/A	\\
 \textbf{running time gt}	&8s				&3h 49min 14s			&N/A				&N/A	\\ \hline
 undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 \textbf{\# of nodes} 		&7.066 			&75.877				&N/A				&N/A	\\
@@ -91,13 +91,13 @@ undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 \textbf{mean} 			&3,247 			&4,308				&N/A				&N/A	\\
 \textbf{diameter} 		&7	 			&15					&N/A				&N/A	\\
 \textbf{effective diameter} 	&4	 			&5					&N/A				&N/A	\\
-\textbf{running time nX} 	&9min 25s		&					&N/A				&N/A	\\
+\textbf{running time nX} 	&9min 25s		&		N/A			&N/A				&N/A	\\
 \textbf{running time gt} 	&1min 50s		&8h 52min 49s			&N/A				&N/A
 \end{tabular}
 \label{tab:exactstatistics}
 \end{table}
 
-We calculated the exact statistics for the first network (\textit{wiki-Vote}) using both libraries and realised that the library \gt is significantly (up to a factor of  5x) faster than \nx, which is why for further analysis we focused on \gt. This comparison has been done with the already parallelised code for \nx, which can be seen in the file \textit{analysis\_nx.py} in the function \textit{compute\_shortest\_path\_distances\_parallel\_mp}, which is displayed	below:
+We calculated the exact statistics for the first network (\textit{wiki-Vote}) using both libraries and realised that the library \gt is significantly (up to a factor of  5x) faster than \nx, which is why for further analysis we focused on \gt. This comparison has been done with the already parallelised code for \nx, which can be seen in the file \texttt{analysis\_nx.py} in the function \texttt{compute\_shortest\_path\_distances\_parallel\_mp}, which is displayed	below:
 
 \begin{lstlisting}
 
@@ -197,21 +197,21 @@ accuracy	& 5\% 	& 	& 	&	\\ \hline
 directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
 %\textbf{\# of nodes} 		&1.300 			&32.223				&N/A				&N/A	\\
 %\textbf{\# of edges} 		&39.456 			&443.506				&N/A				&N/A	\\
-\textbf{median} 			&	 	3		&					&N/A				&N/A	\\
-\textbf{mean} 			&	 	3.28		&					&N/A				&N/A	\\
-\textbf{diameter} 		&	 	10		&					&N/A				&N/A	\\
-\textbf{effective diameter} 	&	 	5		&					&N/A				&N/A	\\
-\textbf{running time nX}	&		12s		&					&N/A				&N/A	\\
-\textbf{running time gt}	&				&					&N/A				&N/A	\\ \hline
+\textbf{median} 			&	 	3		&		N/A			&N/A				&N/A	\\
+\textbf{mean} 			&	 	3.28		&		N/A			&N/A				&N/A	\\
+\textbf{diameter} 		&	 	10		&			N/A		&N/A				&N/A	\\
+\textbf{effective diameter} 	&	 	5		&		N/A			&N/A				&N/A	\\
+\textbf{running time nX}	&		12s		&		N/A			&N/A				&N/A	\\
+\textbf{running time gt}	&		N/A		&		N/A			&N/A				&N/A	\\ \hline
 undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 %\textbf{\# of nodes} 		&7.066 			&75.877				&N/A				&N/A	\\
 %\textbf{\# of edges} 		&103.663			&508.836				&N/A				&N/A	\\
-\textbf{median} 			&	 	3		&					&N/A				&N/A	\\
-\textbf{mean} 			&	 	3.256		&					&N/A				&N/A	\\
-\textbf{diameter} 		&	 	7		&					&N/A				&N/A	\\
-\textbf{effective diameter} 	&	 	4		&					&N/A				&N/A	\\
-\textbf{running time nX} 	&		4min		&					&N/A				&N/A	\\
-\textbf{running time gt} 	&				&					&N/A				&N/A
+\textbf{median} 			&	 	3		&		N/A			&N/A				&N/A	\\
+\textbf{mean} 			&	 	3.256		&		N/A			&N/A				&N/A	\\
+\textbf{diameter} 		&	 	7		&			N/A		&N/A				&N/A	\\
+\textbf{effective diameter} 	&	 	4		&		N/A			&N/A				&N/A	\\
+\textbf{running time nX} 	&		4min		&		N/A			&N/A				&N/A	\\
+\textbf{running time gt} 	&		N/A		&			N/A		&N/A				&N/A
 \end{tabular}
 \label{tab:approximatestatistics_BFS}
 \end{table}
@@ -226,21 +226,21 @@ accuracy	&  	& 	& 	&	\\ \hline
 directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
 %\textbf{\# of nodes} 		&1.300 			&32.223				&N/A				&N/A	\\
 %\textbf{\# of edges} 		&39.456 			&443.506				&N/A				&N/A	\\
-\textbf{median} 			&	 			&					&N/A				&N/A	\\
-\textbf{mean} 			&	 			&					&N/A				&N/A	\\
-\textbf{diameter} 		&	 			&					&N/A				&N/A	\\
-\textbf{effective diameter} 	&	 			&					&N/A				&N/A	\\
-\textbf{running time nX}	&				&					&N/A				&N/A	\\
-\textbf{running time gt}	&				&					&N/A				&N/A	\\ \hline
+\textbf{median} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
+\textbf{mean} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
+\textbf{diameter} 		&	 	N/A		&		N/A			&N/A				&N/A	\\
+\textbf{effective diameter} 	&	 	N/A		&		N/A			&N/A				&N/A	\\
+\textbf{running time nX}	&		N/A		&		N/A			&N/A				&N/A	\\
+\textbf{running time gt}	&		N/A		&		N/A			&N/A				&N/A	\\ \hline
 undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 %\textbf{\# of nodes} 		&7.066 			&75.877				&N/A				&N/A	\\
 %\textbf{\# of edges} 		&103.663			&508.836				&N/A				&N/A	\\
-\textbf{median} 			&	 			&					&N/A				&N/A	\\
-\textbf{mean} 			&	 			&					&N/A				&N/A	\\
-\textbf{diameter} 		&	 			&					&N/A				&N/A	\\
-\textbf{effective diameter} 	&	 			&					&N/A				&N/A	\\
-\textbf{running time nX} 	&				&					&N/A				&N/A	\\
-\textbf{running time gt} 	&				&					&N/A				&N/A
+\textbf{median} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
+\textbf{mean} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
+\textbf{diameter} 		&	 	N/A		&			N/A		&N/A				&N/A	\\
+\textbf{effective diameter} 	&	 	N/A		&			N/A		&N/A				&N/A	\\
+\textbf{running time nX} 	&		N/A		&		N/A			&N/A				&N/A	\\
+\textbf{running time gt} 	&		N/A		&		N/A			&N/A				&N/A
 \end{tabular}
 \label{tab:approximatestatistics_Flajolet-Martin}
 \end{table}
@@ -284,8 +284,17 @@ The Figures~\ref{pic:2_2_soc-Epinions1_lscc} and \ref{pic:2_2_soc-Epinions1_lwcc
 
 \begin{enumerate}[(i)]
 \item How good is the approximation?
+
+They are all surprisingly good. noice
+
 \item Which of the three approximation methods is better and why?
+
+The second method looks superior. It takes less accuracy to get to closer values of ground true than the first approximation method.
+
 \item What is the recommended value of the accuracy parameter, according to your experiments?
+
+Regarding the plots, between $0.1$ and $0.2$.
+
 \end{enumerate}
 
 \end{document}
