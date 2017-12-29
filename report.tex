@@ -156,7 +156,9 @@ The relevant files for the exact computations are:
 
 \subsection{Computation of approximations for a fixed accuracy parameter for all three approximation techniques}
 
-In the first approximation method the accuracy parameter corresponds to the percentage of the number of vertices of the graph which is the number of random sampled pairs of vertices.
+In the first approximation method the accuracy parameter corresponds to the number of random sampled pairs of vertices in relation to the total number of vertices of the graph.
+
+For the second approximation method the accuracy corresponds to the percentage of the number of random sampled vertices in relation to the total number of vertices of the graph.
 
 \begin{table}[h!]
 \centering
@@ -198,11 +200,11 @@ directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
 %\textbf{\# of nodes} 		&1.300 			&32.223				&N/A				&N/A	\\
 %\textbf{\# of edges} 		&39.456 			&443.506				&N/A				&N/A	\\
 \textbf{median} 			&	 	3		&		N/A			&N/A				&N/A	\\
-\textbf{mean} 			&	 	3.28		&		N/A			&N/A				&N/A	\\
+\textbf{mean} 			&	 	3.284	&		N/A			&N/A				&N/A	\\
 \textbf{diameter} 		&	 	10		&			N/A		&N/A				&N/A	\\
 \textbf{effective diameter} 	&	 	5		&		N/A			&N/A				&N/A	\\
 \textbf{running time nX}	&		12s		&		N/A			&N/A				&N/A	\\
-\textbf{running time gt}	&		N/A		&		N/A			&N/A				&N/A	\\ \hline
+%\textbf{running time gt}	&		N/A		&		N/A			&N/A				&N/A	\\ \hline
 undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 %\textbf{\# of nodes} 		&7.066 			&75.877				&N/A				&N/A	\\
 %\textbf{\# of edges} 		&103.663			&508.836				&N/A				&N/A	\\
@@ -210,43 +212,45 @@ undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
 \textbf{mean} 			&	 	3.256		&		N/A			&N/A				&N/A	\\
 \textbf{diameter} 		&	 	7		&			N/A		&N/A				&N/A	\\
 \textbf{effective diameter} 	&	 	4		&		N/A			&N/A				&N/A	\\
-\textbf{running time nX} 	&		4min		&		N/A			&N/A				&N/A	\\
-\textbf{running time gt} 	&		N/A		&			N/A		&N/A				&N/A
+\textbf{running time nX} 	&		4min 12s	&		N/A			&N/A				&N/A	\\
+%\textbf{running time gt} 	&		N/A		&			N/A		&N/A				&N/A
 \end{tabular}
 \label{tab:approximatestatistics_BFS}
 \end{table}
 
+In Table~\ref{tab:approximatestatistics_BFS} it is shown, that we were only able to run this approximation method on the smallest graph. The code did not finish in a reasonable amount of time for the bigger networks. 
+In this table we can see, that even though we chose a quite small accuracy parameter and one would expect a drastic improvement on the running time, that this is not the case. The running time for LWCC improved for 9min 25s to 4min 12 s, which is a los slower than what has been achieved by the first approximation technique. This is also partly due to the fact that this approximation technique is implemented in pure python (as is \nx) and not in C++ (as is \gt).
 
-\begin{table}[h!]
-\centering
-\caption{Approximate statistics for \textbf{the Flajolet-Martin algorithm} for both directed and undirected version of the networks as well as running time}
-\begin{tabular}{c|c|c|c|c}
-	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
-accuracy	&  	& 	& 	&	\\ \hline
-directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
-%\textbf{\# of nodes} 		&1.300 			&32.223				&N/A				&N/A	\\
-%\textbf{\# of edges} 		&39.456 			&443.506				&N/A				&N/A	\\
-\textbf{median} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
-\textbf{mean} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
-\textbf{diameter} 		&	 	N/A		&		N/A			&N/A				&N/A	\\
-\textbf{effective diameter} 	&	 	N/A		&		N/A			&N/A				&N/A	\\
-\textbf{running time nX}	&		N/A		&		N/A			&N/A				&N/A	\\
-\textbf{running time gt}	&		N/A		&		N/A			&N/A				&N/A	\\ \hline
-undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
-%\textbf{\# of nodes} 		&7.066 			&75.877				&N/A				&N/A	\\
-%\textbf{\# of edges} 		&103.663			&508.836				&N/A				&N/A	\\
-\textbf{median} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
-\textbf{mean} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
-\textbf{diameter} 		&	 	N/A		&			N/A		&N/A				&N/A	\\
-\textbf{effective diameter} 	&	 	N/A		&			N/A		&N/A				&N/A	\\
-\textbf{running time nX} 	&		N/A		&		N/A			&N/A				&N/A	\\
-\textbf{running time gt} 	&		N/A		&		N/A			&N/A				&N/A
-\end{tabular}
-\label{tab:approximatestatistics_Flajolet-Martin}
-\end{table}
+
+%\begin{table}[h!]
+%\centering
+%\caption{Approximate statistics for \textbf{the Flajolet-Martin algorithm} for both directed and undirected version of the networks as well as running time}
+%\begin{tabular}{c|c|c|c|c}
+%	& \textbf{wiki-Vote}	& \textbf{soc-Epinions1}	& \textbf{ego-Gplus}	&	\textbf{soc-Pokec}\\ \hline
+%accuracy	&  	& 	& 	&	\\ \hline
+%directed \textbf{LSCC}	& 	& 	& 	&	\\ \hline
+%%\textbf{\# of nodes} 		&1.300 			&32.223				&N/A				&N/A	\\
+%%\textbf{\# of edges} 		&39.456 			&443.506				&N/A				&N/A	\\
+%\textbf{median} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
+%\textbf{mean} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
+%\textbf{diameter} 		&	 	N/A		&		N/A			&N/A				&N/A	\\
+%\textbf{effective diameter} 	&	 	N/A		&		N/A			&N/A				&N/A	\\
+%\textbf{running time nX}	&		N/A		&		N/A			&N/A				&N/A	\\
+%\textbf{running time gt}	&		N/A		&		N/A			&N/A				&N/A	\\ \hline
+%undirected \textbf{LWCC}	& 	& 	& 	&	\\ \hline
+%%\textbf{\# of nodes} 		&7.066 			&75.877				&N/A				&N/A	\\
+%%\textbf{\# of edges} 		&103.663			&508.836				&N/A				&N/A	\\
+%\textbf{median} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
+%\textbf{mean} 			&	 	N/A		&		N/A			&N/A				&N/A	\\
+%\textbf{diameter} 		&	 	N/A		&			N/A		&N/A				&N/A	\\
+%\textbf{effective diameter} 	&	 	N/A		&			N/A		&N/A				&N/A	\\
+%\textbf{running time nX} 	&		N/A		&		N/A			&N/A				&N/A	\\
+%\textbf{running time gt} 	&		N/A		&		N/A			&N/A				&N/A
+%\end{tabular}
+%\label{tab:approximatestatistics_Flajolet-Martin}
+%\end{table}
 
 \newpage
-asd
 
 \newpage
 
@@ -257,27 +261,27 @@ The largest network for which we computed exact network statistics was \textit{s
 \begin{figure}[h!]
 \includegraphics[width=0.9\linewidth]{figures/2_2_wiki-Vote_lscc.png}
 \caption{First approximation of the network statistics by \textbf{sampling random pairs of vertices} to approximate network statistics as a function of the accuracy parameter for the \textbf{LSCC} for the network \textit{wiki-Vote}. The dashed line corresponds to the exact value of the network statistics in the same colour.}
-\label{pic:2_2_soc-Epinions1_lscc}
+\label{pic:2_2_wiki-Vote_lscc}
 \end{figure}
 
 \begin{figure}[h!]
 \includegraphics[width=0.9\linewidth]{figures/2_2_wiki-Vote_lwcc.png}
 \caption{First approximation of the network statistics by \textbf{sampling random pairs of vertices} to approximate network statistics as a function of the accuracy parameter for the \textbf{LWCC} for the network \textit{wiki-Vote}.The dashed line corresponds to the exact value of the network statistics in the same colour.}
-\label{pic:2_2_soc-Epinions1_lwcc}
+\label{pic:2_2_wiki-Vote_lwcc}
 \end{figure}
 
-The Figures~\ref{pic:2_2_soc-Epinions1_lscc} and \ref{pic:2_2_soc-Epinions1_lwcc} show, that for sampling random pairs of vertices all approximate network statistics apart from the diameter converge already for very small accuracies to the exact value. Therefore a relatively small fraction of the number of vertices can be selected as the number of random sampled pairs and quite accurate approximations for all network statistics but the diameter can be achieved.
+The Figures~\ref{pic:2_2_wiki-Vote_lscc} and \ref{pic:2_2_wiki-Vote_lwcc} show, that for sampling random pairs of vertices all approximate network statistics apart from the diameter converge already for very small accuracies to the exact value. Therefore a relatively small fraction of the number of vertices can be selected as the number of random sampled pairs and quite accurate approximations for all network statistics but the diameter can be achieved.
 
 \begin{figure}[h!]
 	\includegraphics[width=0.9\linewidth]{figures/2_2_method2_wiki-Vote_lscc.png}
-	\caption{Second approximation of the network statistics by \textbf{sampling random sources} to approximate network statistics as a function of the accuracy parameter for the \textbf{LSCC} for the network \textit{wiki-Vote}. The dashed line corresponds to the exact value of the network statistics in the same colour.}
-	\label{pic:2_2_method2_lscc}
+	\caption{Second approximation of the network statistics by \textbf{sampling random sources and applying breadth-first search} to approximate network statistics as a function of the accuracy parameter for the \textbf{LSCC} for the network \textit{wiki-Vote}. The dashed line corresponds to the exact value of the network statistics in the same colour.}
+	\label{pic:2_2_method2_wiki-Vote_lscc}
 \end{figure}
 
 \begin{figure}[h!]
 	\includegraphics[width=0.9\linewidth]{figures/2_2_method2_wiki-Vote_lwcc.png}
-	\caption{Second approximation of the network statistics by \textbf{sampling random sources} to approximate network statistics as a function of the accuracy parameter for the \textbf{LWCC} for the network \textit{wiki-Vote}. The dashed line corresponds to the exact value of the network statistics in the same colour.}
-	\label{pic:2_2_method2_lwcc}
+	\caption{Second approximation of the network statistics by \textbf{sampling random sources and applying breadth-first search} to approximate network statistics as a function of the accuracy parameter for the \textbf{LWCC} for the network \textit{wiki-Vote}. The dashed line corresponds to the exact value of the network statistics in the same colour.}
+	\label{pic:2_2_method2_wiki-Vote_lwcc}
 \end{figure}
 
 \subsection{Discussion}
@@ -285,15 +289,21 @@ The Figures~\ref{pic:2_2_soc-Epinions1_lscc} and \ref{pic:2_2_soc-Epinions1_lwcc
 \begin{enumerate}[(i)]
 \item How good is the approximation?
 
-They are all surprisingly good. noice
+Both approximation methods are surprisingly good. Both achieve good estimations of the exact network statistics already with a small accuracy parameter.
+
+Before having implemented those approximation methods we thought that an accuracy of above 50\% would yield to promising results. But already really small accuracies (less than 5\%) achieve highly accurate estimations of the network statistics. 
+
+The hardest network statistic to estimate is the diameter. This also makes sense as it is a number which represents an important part of the entire graph. Random sampling of pairs of vertices and or BFS might not capture this property. 
 
 \item Which of the three approximation methods is better and why?
 
-The second method looks superior. It takes less accuracy to get to closer values of ground true than the first approximation method.
+The second approximation method looks superior.
+For one reason because it takes less accuracy to get to closer values of ground truth than the first approximation method.
+And secondly especially early estimations of the diameter are considerably closer to the exact value than the estimation obtained by simple random sampling of pairs of vertices. The approximations method of random sampling of pairs of vertices would need a very high accuracy to predict the diameter with a high confidence, which will be costly in terms of computation. The approximations method of picking random sources and applying breadth-first search on the other hand is predicting accurate estimations starting with low accuracy parameters. 
 
 \item What is the recommended value of the accuracy parameter, according to your experiments?
 
-Regarding the plots, between $0.1$ and $0.2$.
+Judging by the plots displayed in Figure~\ref{pic:2_2_method2_wiki-Vote_lscc} and \ref{pic:2_2_method2_wiki-Vote_lwcc} an accuracy parameter between $0.1$ and $0.2$ seems like a reasonable trade-off between computation time and achieved accuracy of the estimated network statistics.
 
 \end{enumerate}
 
