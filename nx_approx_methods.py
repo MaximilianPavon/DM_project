@@ -73,23 +73,25 @@ def method_3(g, num_bitstrings=8, max_iter=64, len_bitstrings=64):
             h_max = h
             break
 
-    print('diameter of the component: {}'.format(h_max))
+    print(neighborhood)
+    print('median distance of the component: {}'.format(int(np.median(neighborhood))))
     print('mean distance of the component: {}'.format(int(np.mean(neighborhood))))
-    # smallest_h = -1
-    # perfect_match = False
-    # for h in range(max_iter):
-    #     if neighborhood[h] == 0.9 * neighborhood[h_max]:
-    #         perfect_match = True
-    #         smallest_h = h
-    #         break
-    #     elif neighborhood[h] > 0.9 * neighborhood[h_max]:
-    #         smallest_h = h
-    #         break
-    #
-    # if perfect_match:
-    #     print('effective diameter: ', smallest_h)
-    # else:
-    #     print('effective diameter: ', statistics.interpolate(smallest_h, h_max, neighborhood))
+    print('diameter of the component: {}'.format(h_max))
+    smallest_h = -1
+    perfect_match = False
+    for h in range(max_iter):
+        if neighborhood[h] == 0.9 * neighborhood[h_max]:
+            perfect_match = True
+            smallest_h = h
+            break
+        elif neighborhood[h] > 0.9 * neighborhood[h_max]:
+            smallest_h = h
+            break
+
+    if perfect_match:
+        print('effective diameter: ', smallest_h)
+    else:
+        print('effective diameter: ', interpolate(smallest_h, h_max, neighborhood))
 
 
 def neighborhood_sum(b, n, k, h):
@@ -108,9 +110,7 @@ def neighborhood_func(b, k, h, i):
 
 
 def leftmost_zero(array):
-    for pos in range(len(array)):
-        if not array[pos]:
-            return len(array) - pos
+    return np.where(array == 0)[0][0]
 
 
 def interpolate(h, h_max, n_func):
@@ -128,6 +128,6 @@ if __name__ == "__main__":
     lwcc = analysis_nx.calculate_largest_weakly_connected_comp(g)
 
     n_samples = int(0.01 * lscc.number_of_nodes())
-    bfs_graph = method_2(lscc, n_samples)
+    #bfs_graph = method_2(lscc, n_samples)
 
-    #method_3(g, 32)
+    method_3(lscc, 32)
