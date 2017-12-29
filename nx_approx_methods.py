@@ -39,41 +39,62 @@ def method_2(g, n_samples):
     return g.edge_subgraph(bfs_edges)
 
 
-def method_3(g, n_samples=32, max_iter=256):
+def method_3(g, num_bitstrings=8, max_iter=64, len_bitstrings=64):
     """
     section 2.2 http://math.cmu.edu/~ctsourak/tkdd10.pdf
     """
-    K = n_samples
-    max_iter = max_iter # h
-    n = g.number_of_nodes() # i
-    L = 64 # length of the bitstring
-    bitmaps = np.zeros((K, max_iter, n, L), dtype=np.bool)
+    nodes = nx.nodes(g)
+    num_nodes = np.max(nodes) + 1
+
+    bitmaps = np.zeros((num_bitstrings, max_iter, num_nodes, len_bitstrings), dtype=np.bool)
+
+    for node in nodes:
+        for l in range(num_bitstrings):
+            bitmaps[l, 0, node] = np.array(list(np.binary_repr(len(list(nx.neighbors(g, node))), width=len_bitstrings))).astype(bool)
 
     h_max = -1
-    N = np.zeros(max_iter)
+    neighborhood = np.zeros(max_iter)
 
-    for h in range(max_iter):
-        changed = False
-        for i in range(n):
-            for l in range(K):
-                bitmaps[l, h, i] = bitmaps[l, h - 1, i] | 'thefuck'
+    for h in range(1, max_iter):
+        changed = 0
+        for node in nodes:
+            for l in range(1, num_bitstrings):
+                neighbors = nx.neighbors(g, node)
+                bitmaps[l, h, node] = bitmaps[l, h - 1, node]
+                for neighbor in neighbors:
+                    bitmaps[l, h, node] |= bitmaps[l, h - 1, neighbor]
 
-            if 'something not equal to something':
-                changed = True
+            for l in range(1, num_bitstrings):
+                if not np.array_equal(bitmaps[l, h, node], bitmaps[l, h - 1, node]):
+                    changed += 1
 
-        N[h] = _neighborhood_sum(bitmaps, n, K, h)
-        if not changed:
+        neighborhood[h] = neighborhood_sum(bitmaps, nodes, num_bitstrings, h)
+        if changed == 0:
             h_max = h
-            break # the loop
+            break
 
-    eff_diameter = 'smallest strange thing'
+    print('diameter of the component: {}'.format(h_max))
+    print('mean distance of the component: {}'.format(int(np.mean(neighborhood))))
+    # smallest_h = -1
+    # perfect_match = False
+    # for h in range(max_iter):
+    #     if neighborhood[h] == 0.9 * neighborhood[h_max]:
+    #         perfect_match = True
+    #         smallest_h = h
+    #         break
+    #     elif neighborhood[h] > 0.9 * neighborhood[h_max]:
+    #         smallest_h = h
+    #         break
+    #
+    # if perfect_match:
+    #     print('effective diameter: ', smallest_h)
+    # else:
+    #     print('effective diameter: ', statistics.interpolate(smallest_h, h_max, neighborhood))
 
-    return 0
 
-
-def _neighborhood_sum(b, n, k, h):
+def neighborhood_sum(b, n, k, h):
     neigh_sum = 0
-    for ii in range(n):
+    for ii in n:
         neigh_sum += neighborhood_func(b, k, h, ii)
 
     return neigh_sum
@@ -87,9 +108,15 @@ def neighborhood_func(b, k, h, i):
 
 
 def leftmost_zero(array):
-    nz_is = np.nonzero(array)[0]
-    assert nz_is.size != 0, 'Everything is zero!'
-    return len(array) - nz_is[-1] - 1
+    for pos in range(len(array)):
+        if not array[pos]:
+            return len(array) - pos
+
+
+def interpolate(h, h_max, n_func):
+    diameter_eff = h - 1
+    diameter_eff += (0.9 * n_func[h_max] - n_func[h - 1]) / (n_func[h] - n_func[h - 1])
+    return diameter_eff
 
 
 if __name__ == "__main__":
