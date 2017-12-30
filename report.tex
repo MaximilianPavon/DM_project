@@ -250,13 +250,66 @@ In this table we can see, that even though we chose a quite small accuracy param
 %\label{tab:approximatestatistics_Flajolet-Martin}
 %\end{table}
 
-\textcolor{red}{Text about Flajolet --- Hector}
+For the third approximation we had to make use of the Flajolet-Marting algorithm \cite{FLAJOLET1985182}. Our implementation for computing approximate graph statistics is based on the paper \textit{HADI: Mining Radii of Large Graphs} \cite{Kang:2011:HMR:1921632.1921634}, Section 2.2. It can be seen on the file \texttt{nx\_approx\_methods.py}, method \texttt{method\_3()}, which is also displayed below:
+
+\begin{lstlisting}
+def method_3(g, num_bitstrings=8, max_iter=64, len_bitstrings=64):
+  nodes = nx.nodes(g)
+  num_nodes = np.max(nodes) + 1
+
+  bitmaps = np.zeros((num_bitstrings, max_iter, num_nodes, len_bitstrings), dtype=np.bool)
+
+  for node in nodes:
+    for l in range(num_bitstrings):
+    bitmaps[l, 0, node] = np.array(list(np.binary_repr(len(list(nx.neighbors(g, node))), width=len_bitstrings))).astype(bool)
+
+  h_max = -1
+  neighborhood = np.zeros(max_iter)
+
+  for h in range(1, max_iter):
+    changed = 0
+    for node in nodes:
+      for l in range(1, num_bitstrings):
+        neighbors = nx.neighbors(g, node)
+        bitmaps[l, h, node] = bitmaps[l, h - 1, node]
+        for neighbor in neighbors:
+          bitmaps[l, h, node] |= bitmaps[l, h - 1, neighbor]
+
+      for l in range(1, num_bitstrings):
+        if not np.array_equal(bitmaps[l, h, node], bitmaps[l, h - 1, node]):
+          changed += 1
+
+    neighborhood[h] = neighborhood_sum(bitmaps, nodes, num_bitstrings, h)
+    if changed == 0:
+      h_max = h
+      break
+
+  print(neighborhood)
+  print('median distance of the component: {}'.format(int(np.median(neighborhood))))
+  print('mean distance of the component: {}'.format(int(np.mean(neighborhood))))
+  print('diameter of the component: {}'.format(h_max))
+  smallest_h = -1
+  perfect_match = False
+  for h in range(max_iter):
+    if neighborhood[h] == 0.9 * neighborhood[h_max]:
+      perfect_match = True
+      smallest_h = h
+      break
+    elif neighborhood[h] > 0.9 * neighborhood[h_max]:
+      smallest_h = h
+      break
+
+  if perfect_match:
+    print('effective diameter: ', smallest_h)
+  else:
+    print('effective diameter: ', interpolate(smallest_h, h_max, neighborhood))
+\end{lstlisting}
+
+However due to the difficulty of the implementation we only managed to approximate the diameter correctly. For that reason we couldn't show reasonable table of measurements or plots of the accuracy for this method in Section~\ref{accuracy-plots}.
 
 \newpage
 
-\newpage
-
-\subsection{Approximation of the network statistics for different values of the accuracy parameter}
+\subsection{Approximation of the network statistics for different values of the accuracy parameter} \label{accuracy-plots}
 
 The largest network for which we computed exact network statistics was \textit{soc-Epinions1}. But we were only able to run the second approximation method (sampling random sources and applying breadth-first search) to the smallest network, \textit{wiki-Vote}. This is the reason why we show the requested plots for the second approximation method only for the smallest network, but for the first approximation method (sampling random pairs of vertices) for both networks, in order to compare to the exact network statistics and to the second approximation method.
 
@@ -326,5 +379,11 @@ And secondly especially early estimations of the diameter are considerably close
 Judging by the plots displayed in Figure~\ref{pic:2_2_method2_wiki-Vote_lscc} and \ref{pic:2_2_method2_wiki-Vote_lwcc} an accuracy parameter between $0.1$ and $0.2$ seems like a reasonable trade-off between a feasible computation time and the achieved accuracy of the estimated network statistics.
 
 \end{enumerate}
+
+\section*{Acknowledgements}
+Flajolet-Martin algorithm implementation was discussed especially with Aditya Kaushik Surikuchi.
+
+\bibliography{refs}{}
+\bibliographystyle{plain}
 
 \end{document}
